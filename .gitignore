@@ -1,0 +1,51 @@
+# Bytecode de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+env/
+venv/
+ENV/
+.venv/
+
+# Archivos del entorno (pip, dotenv, etc.)
+*.env
+.env.*
+
+# Configuración de editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de base de datos locales y sqlite
+*.sqlite3
+*.db
+
+# Archivos de migración si no quieres trackearlos (opcional)
+# **/migrations/*.py
+# **/migrations/*.pyc
+# ¡OJO! Esto ignora los archivos de migración: solo hazlo si tienes razones claras.
+
+# Archivos estáticos generados
+staticfiles/
+static/
+
+# Archivos de medios subidos
+media/
+
+# Archivos de logs
+*.log
+
+# Archivos de compilación de front-end (si usas React/Vite/etc.)
+node_modules/
+build/
+dist/
+
+# Compilaciones de Django collectstatic (opcional)
+static_root/

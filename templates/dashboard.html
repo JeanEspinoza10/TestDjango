@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .header-actions {
+            display: flex;
+            align-items: flex-start;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+        .filter-form {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: end;
+        }
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #667eea;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #5a67d8;
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            background-color: #6b7280;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #4b5563;
+        }
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .table-container {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th {
+            background-color: #f8fafc;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .table td {
+            padding: 1rem;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .table tbody tr:hover {
+            background-color: #f9fafb;
+        }
+        .table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #6b7280;
+            font-style: italic;
+        }
+        .logout-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            transition: all 0.15s ease-in-out;
+            font-size: 0.875rem;
+        }
+        .logout-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-1px);
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 9999px;
+            background-color: #e0e7ff;
+            color: #3730a3;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .header-actions {
+                justify-content: flex-end;
+                margin-top: 1rem;
+            }
+            .form-row {
+                flex-direction: column;
+            }
+            .form-group {
+                min-width: auto;
+            }
+            .btn-group {
+                flex-direction: column;
+            }
+            .table-container {
+                overflow-x: auto;
+            }
+            .table {
+                min-width: 600px;
+            }
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>Bienvenido, {{ user.name }} 👋</h1>
+                <p>Estás en el panel de control.</p>
+            </div>
+            <div class="header-actions">
+                <a href="{% url 'logout' %}" class="logout-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16,17 21,12 16,7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                    Cerrar sesión
+                </a>
+            </div>
+        </div>
+
+        <h2 class="section-title">Clientes</h2>
+
+        <div class="filter-form">
+            <form method="get">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Buscar por nombre</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Buscar por nombre" value="{{ name_filter|default_if_none:'' }}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cumpleanos">Cumpleaños</label>
+                        <input type="text" id="cumpleanos" name="cumpleanos" class="form-control" placeholder="MM-DD" value="{{ birthday_filter|default_if_none:'' }}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="orden">Ordenar por</label>
+                        <select name="orden" id="orden" class="form-control">
+                            <option value="" {% if not sort_by %}selected{% endif %}>-- Ordenar por --</option>
+                            <option value="nombre" {% if sort_by == nombre %}selected{% endif %}>Nombre</option>
+                            <option value="empresa" {% if sort_by == empresa %}selected{% endif %}>Empresa</option>
+                            <option value="cumpleanos" {% if sort_by == cumpleanos %}selected{% endif %}>Cumpleaños</option>
+                            <option value="ultima_interaccion" {% if sort_by == ultima_interaccion %}selected{% endif %}>Ultima Interacción</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href = '/dashboard/'">Limpiar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Compañía</th>
+                        <th>Representante</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Ultima Interacción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for customer in customers %}
+                    <tr>
+                        <td><strong>{{ customer.name }}</strong></td>
+                        <td>{{ customer.company.name }}</td>
+                        <td>{{ customer.assigned_sales_person.name }}</td>
+                        <td>{{ customer.birth_date|date:"F j" }}</td>
+                        <td>
+                            {{ customer.last_interaction_date|timesince }} ago
+                            <span class="badge">({{ customer.last_interaction_type }})</span>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="empty-state">No se encontraron resultados.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</html>
