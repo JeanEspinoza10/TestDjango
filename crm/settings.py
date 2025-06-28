@@ -31,6 +31,9 @@ DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 ALLOWED_HOSTS = ['*']
 
 # Application definition
+CSRF_TRUSTED_ORIGINS = [
+    'https://testupc.jespinoza.site',
+]
 
 AUTH_USER_MODEL = 'customer_mgmt.SalesPerson' 
 LOGIN_URL = '/'
