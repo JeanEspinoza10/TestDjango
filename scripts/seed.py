@@ -24,11 +24,12 @@ def run():
     Customer.objects.all().delete()
     Company.objects.all().delete()
     SalesPerson.objects.all().delete()
-    print(PASSWORD)
+    
     print("Creando 3 representantes de ventas...")
     reps = []
     for i in range(3):
         email = fake.email(domain='crm.com')
+        print("Usuario: ", email)
         display_name = fake.name() +' '+ fake.last_name()        
         rep = SalesPerson.objects.create_user(
             email=f'{email}',
